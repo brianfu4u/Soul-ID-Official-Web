@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>魂の銘 Soul ID ｜ Beyond Culture</title>
+<meta name="description" content="一人の生涯を、写真と声と文章で残す。Beyond Culture の 魂の銘（Soul ID）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200&family=Shippori+Mincho+B1:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BEYOND CULTURE — 魂の銘 / Soul ID
+   Option E : 記憶の器 (The Vessel of Memory)
+   Palette   sumi #14161A / washi #E9E7E1 / kami #F5F3EE
+             ai #0C1B3E / gunjo #1F49C4 / sora #86A9E6
+             shu #B03A2B / koke #7A8A5C
+   Type      Shippori Mincho B1 (display, JP)
+             Cormorant Garamond (display, Latin)
+             Zen Kaku Gothic New (utility / captions / data)
+   ============================================================ */
+:root{
+  --sumi:#14161A; --sumi-soft:#2A2E35;
+  --washi:#E9E7E1; --kami:#F5F3EE; --kasumi:#D9D6CE;
+  --ai:#0C1B3E; --ai-deep:#071129; --gunjo:#1F49C4; --sora:#86A9E6;
+  --shu:#B03A2B; --koke:#7A8A5C; --koke-lit:#9DAC7C;
+  --ink-60:rgba(20,22,26,.60); --ink-38:rgba(20,22,26,.38); --ink-16:rgba(20,22,26,.16);
+  --paper-60:rgba(245,243,238,.60); --paper-32:rgba(245,243,238,.32); --paper-14:rgba(245,243,238,.14);
+  --jp:"Shippori Mincho B1","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho","YuMincho","MS PMincho",serif;
+  --la:"Cormorant Garamond","Shippori Mincho B1",serif;
+  --ut:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Sans","Yu Gothic","YuGothic","Meiryo",sans-serif;
+  --dew:"Noto Sans JP","Hiragino Sans","Yu Gothic","YuGothic","Meiryo",sans-serif;
+  --gut:clamp(20px,5vw,64px);
+  --col:min(1180px,100% - var(--gut)*2);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{
+  margin:0; background:var(--washi); color:var(--sumi);
+  font-family:var(--jp); font-weight:400; line-height:1.95;
+  font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block; max-width:100%}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
+:focus-visible{outline:2px solid var(--gunjo); outline-offset:3px}
+::selection{background:var(--sora); color:var(--ai-deep)}
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--ut); font-size:11px; font-weight:500;
+  letter-spacing:.34em; text-transform:uppercase; line-height:1.6;
+  color:var(--ink-38);
+}
+.eyebrow--on-dark{color:var(--paper-32)}
+.cap{
+  font-family:var(--ut); font-size:11.5px; line-height:1.85;
+  letter-spacing:.06em; color:var(--ink-60);
+}
+.cap--on-dark{color:var(--paper-60)}
+.lat{font-family:var(--la); font-style:italic; font-weight:300; letter-spacing:.02em}
+.h2{
+  font-size:clamp(28px,4.2vw,46px); font-weight:600; line-height:1.5;
+  letter-spacing:.10em; margin:0;
+}
+.lede{
+  font-size:clamp(15px,1.35vw,17.5px); line-height:2.35; letter-spacing:.05em;
+  color:var(--ink-60); max-width:38em;
+}
+.lede--on-dark{color:var(--paper-60)}
+.rule{height:1px; background:var(--ink-16); border:0; margin:0}
+/* vertical-writing eyebrow used down the left margin of paper sections */
+.vlabel{
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-family:var(--jp); font-size:12px; letter-spacing:.62em;
+  color:var(--ink-38); user-select:none;
+}
+/* ================= NAV ================= */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:60;
+  display:flex; align-items:center; gap:clamp(14px,3vw,40px);
+  padding:14px var(--gut);
+  background:rgba(233,231,225,.78); backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--ink-16);
+  transition:background .5s, border-color .5s, color .5s;
+}
+.nav.is-dark{
+  background:rgba(7,17,41,.72); border-bottom-color:var(--paper-14); color:var(--kami);
+}
+.nav.is-dark .nav__mark small,.nav.is-dark .nav__link{color:var(--paper-60)}
+.nav.is-dark .lang{border-color:var(--paper-14); color:var(--paper-60)}
+.nav.is-dark .lang b{color:var(--kami)}
+.nav__mark{display:flex; align-items:baseline; gap:10px; margin-right:auto; min-width:0; flex-shrink:0}
+.nav__mark strong{font-size:17px; font-weight:600; letter-spacing:.22em; white-space:nowrap}
+.nav__mark small{
+  font-family:var(--la); font-size:12px; letter-spacing:.30em;
+  text-transform:uppercase; color:var(--ink-38); white-space:nowrap;
+}
+.nav__links{display:flex; gap:clamp(12px,2.2vw,30px)}
+.nav__link{
+  font-family:var(--jp); font-size:13.5px; letter-spacing:.16em;
+  color:var(--ink-60); padding:4px 0; position:relative;
+}
+.nav__link::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px;
+  background:currentColor; transition:right .4s cubic-bezier(.2,.7,.3,1);
+}
+.nav__link:hover::after,.nav__link:focus-visible::after{right:0}
+.lang{
+  display:flex; align-items:center; gap:6px; margin-left:6px;
+  border:1px solid var(--ink-16); border-radius:99px; padding:5px 12px;
+  font-family:var(--ut); font-size:10.5px; letter-spacing:.2em; color:var(--ink-38);
+  white-space:nowrap; flex-shrink:0;
+}
+.lang b{color:var(--sumi); font-weight:500}
+.book{
+  display:inline-flex; align-items:center; gap:9px;
+  background:var(--koke); color:var(--kami);
+  padding:10px 20px; font-size:13px; letter-spacing:.22em;
+  border:1px solid var(--koke); transition:background .35s,color .35s;
+  white-space:nowrap; flex-shrink:0;
+}
+.book:hover{background:transparent; color:var(--koke)}
+.nav.is-dark .book:hover{color:var(--koke-lit); border-color:var(--koke-lit)}
+@media(max-width:880px){
+  .nav__links{display:none}
+  .book{padding:9px 14px; font-size:11.5px; letter-spacing:.14em}
+}
+@media(max-width:480px){
+  .nav{gap:10px; padding:12px 16px}
+  .nav__mark small{display:none}
+  .lang{padding:5px 9px; font-size:9.5px}
+  .book{padding:8px 12px; font-size:10.5px; letter-spacing:.1em}
+}
+/* ================= HERO — 技法 5+6+1 ================= */
+/* falling calligraphy → converging into an ink vessel,
+   dotted chains behind, dewdrop kanji watermark */
+.hero{
+  position:relative; min-height:100svh;
+  display:grid; grid-template-rows:1fr auto; padding-top:66px;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #FFFFFF 0%, var(--kami) 40%, var(--washi) 78%, var(--kasumi) 100%);
+  overflow:hidden;
+}
+.hero__stage{position:absolute; inset:0; pointer-events:none}
+.hero__stage svg{width:100%; height:100%}
+.hero__inner{
+  position:relative; z-index:3; width:var(--col); margin-inline:auto;
+  align-self:center; padding-block:min(11vh,110px) 0;
+}
+.hero__title{
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-size:clamp(40px,7.4vw,86px); font-weight:800;
+  letter-spacing:.30em; line-height:1.25; margin:0;
+  height:min(46vh,380px);
+}
+.hero__meta{margin-top:22px; display:flex; flex-direction:column; gap:14px; max-width:30em}
+.hero__meta .ink,.hero__foot .ink{
+  display:inline; background:rgba(245,243,238,.82); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  padding:3px 6px; margin:0 -6px; border-radius:2px; box-decoration-break:clone; -webkit-box-decoration-break:clone;
+}
+.hero__lat{font-family:var(--la); font-size:clamp(20px,2.6vw,30px); font-weight:300; letter-spacing:.44em; text-transform:uppercase; color:var(--ink-60)}
+.hero__seal{
+  position:absolute; z-index:4; right:calc(var(--gut) + 4px); bottom:clamp(96px,16vh,190px);
+  width:52px; height:52px; border:1.5px solid var(--shu); color:var(--shu);
+  display:grid; place-items:center; opacity:.9;
+}
+.hero__seal span{writing-mode:vertical-rl; font-size:15px; letter-spacing:.18em; font-weight:600}
+.hero__foot{
+  position:relative; z-index:3; width:var(--col); margin-inline:auto;
+  padding-block:20px 30px; display:flex; justify-content:space-between; align-items:end; gap:20px;
+  border-top:1px solid var(--ink-16);
+}
+.scrollcue{display:flex; align-items:center; gap:10px}
+.scrollcue i{display:block; width:44px; height:1px; background:var(--ink-38); transform-origin:left;
+  animation:cue 3.4s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes cue{0%,100%{transform:scaleX(.25); opacity:.4}50%{transform:scaleX(1); opacity:1}}
+/* falling glyphs */
+.fall{animation:fall var(--dur,13s) linear var(--delay,0s) infinite}
+@keyframes fall{
+  0%{transform:translate(var(--x0),-60px); opacity:0}
+  10%{opacity:var(--op,.8)}
+  76%{opacity:var(--op,.8)}
+  93%{opacity:0}
+  100%{transform:translate(var(--x1),665px); opacity:0}
+}
+.chain circle{animation:shimmer var(--sd,7s) ease-in-out var(--delay,0s) infinite}
+@keyframes shimmer{0%,100%{opacity:.16}50%{opacity:.52}}
+.settled{opacity:0; animation:settle 2.4s ease-out 1.1s forwards}
+@keyframes settle{to{opacity:1}}
+.brush-in{stroke-dasharray:var(--len,1400); stroke-dashoffset:var(--len,1400);
+  animation:draw 2.4s cubic-bezier(.65,0,.2,1) .25s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(max-width:700px){
+  .hero__title{height:auto; letter-spacing:.22em; margin-bottom:6px}
+  .hero__seal{display:none}
+}
+/* ================= 序 CONCEPT — 技法 4 ================= */
+.concept{position:relative; background:var(--kami); padding-block:clamp(80px,13vh,150px)}
+.concept__thread{position:absolute; inset:0; pointer-events:none; overflow:hidden}
+.concept__thread svg{position:absolute; top:0; right:-6%; height:100%; width:min(52%,620px)}
+.concept__wrap{position:relative; z-index:2; width:var(--col); margin-inline:auto;
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:clamp(24px,5vw,72px)}
+.concept__body{max-width:52ch}
+.concept__body p{margin:0 0 1.5em}
+.parable{
+  margin:36px 0 0; padding:26px 0 0; border-top:1px solid var(--ink-16);
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,2.4vw,32px);
+}
+.parable dt{font-size:clamp(15px,1.7vw,19px); letter-spacing:.14em; font-weight:600; margin-bottom:10px}
+.parable dd{margin:0}
+.parable .cap{display:block}
+@media(max-width:760px){
+  .concept__wrap{grid-template-columns:1fr}
+  .concept .vlabel{writing-mode:horizontal-tb; letter-spacing:.4em; font-size:11px}
+  .parable{grid-template-columns:1fr; gap:20px}
+}
+/* ================= 機能 FEATURES — 技法 7+8 ================= */
+.features{
+  position:relative; color:var(--kami); overflow:hidden;
+  background:linear-gradient(168deg, var(--gunjo) 0%, #163AA8 34%, var(--ai) 78%, var(--ai-deep) 100%);
+  padding-block:clamp(84px,14vh,160px);
+}
+.features__field{position:absolute; inset:0; pointer-events:none}
+.features__field svg{width:100%; height:100%}
+.features__wrap{position:relative; z-index:2; width:var(--col); margin-inline:auto}
+.features__head{display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:24px}
+.features__head > *{
+  background:rgba(7,17,41,.6); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  padding:10px 14px; margin:-10px -14px; border-radius:2px;
+}
+.features .h2{color:var(--kami)}
+.grid{
+  margin-top:clamp(38px,6vh,72px);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:1px;
+  background:var(--paper-14); border:1px solid var(--paper-14);
+}
+.card{
+  background:linear-gradient(180deg, rgba(9,20,46,.94), rgba(7,17,41,.97));
+  padding:clamp(24px,3vw,38px); min-height:270px;
+  display:flex; flex-direction:column; gap:14px;
+  transition:background .5s;
+}
+.card:hover{background:linear-gradient(180deg, rgba(12,26,58,.88), rgba(7,17,41,.94))}
+.card__no{font-family:var(--ut); font-size:10.5px; letter-spacing:.3em; color:var(--sora)}
+.card__gl{font-size:34px; line-height:1; letter-spacing:.1em; color:var(--sora); opacity:.9}
+.card h3{margin:0; font-size:19px; font-weight:600; letter-spacing:.13em; line-height:1.7}
+.card p{margin:0; font-size:13.5px; line-height:2.1; color:var(--paper-60); letter-spacing:.04em}
+.card__en{margin-top:auto; font-family:var(--la); font-style:italic; font-size:14px; color:var(--paper-32)}
+/* ========== 生涯 TIMELINE :: 技法 9 + 露 (dewdrop) ========== */
+.life{
+  position:relative; overflow:hidden; color:var(--sumi);
+  background:radial-gradient(132% 100% at 26% 2%, #E8E7E3 0%, #DDDCD7 42%, #D1D0CA 76%, #C5C4BE 100%);
+  padding-block:clamp(80px,13vh,150px);
+}
+.life__grain{position:absolute; inset:0; pointer-events:none; opacity:.30; mix-blend-mode:multiply}
+.life__grain svg{width:100%; height:100%}
+.life__wrap{position:relative; z-index:2; width:var(--col); margin-inline:auto}
+.life__head{max-width:42ch}
+.life__chart{position:relative; margin-top:clamp(24px,4vh,48px)}
+.life__chart svg{width:100%; height:auto; overflow:visible}
+.life__legend{
+  margin-top:20px; display:flex; flex-wrap:wrap; gap:10px 34px;
+  border-top:1px solid var(--ink-16); padding-top:18px;
+}
+.dewglyph{font-family:var(--dew); font-weight:100; fill:#3E4044}
+.dewage{font-family:var(--dew); font-weight:200; fill:#2A2C30}
+/* ================= 会社概要 ABOUT — 技法 2 ================= */
+.about{position:relative; background:var(--washi); padding-block:clamp(80px,13vh,150px); overflow:hidden}
+.about__branch{
+  position:absolute; left:0; right:auto; bottom:0; top:auto;
+  width:min(40%,460px); height:min(62%,520px); pointer-events:none; opacity:.9;
+}
+.about__branch svg{width:100%; height:100%}
+@media(max-width:820px){.about__branch{display:none}}
+.about__wrap{position:relative; z-index:2; width:var(--col); margin-inline:auto;
+  display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(28px,5vw,70px); align-items:start}
+.profile{border-top:1px solid var(--sumi)}
+.profile div{display:grid; grid-template-columns:8.5em minmax(0,1fr); gap:0 20px;
+  padding:14px 0; border-bottom:1px solid var(--ink-16)}
+.profile dt{font-size:13px; letter-spacing:.2em; color:var(--ink-60)}
+.profile dd{margin:0; font-size:14.5px; letter-spacing:.05em}
+.ph{
+  border-bottom:1px dashed var(--shu); padding-bottom:1px;
+  color:var(--sumi-soft);
+}
+.ph::after{content:"要確認"; font-family:var(--ut); font-size:9.5px; letter-spacing:.14em;
+  color:var(--shu); vertical-align:super; margin-left:6px}
+@media(max-width:820px){
+  .about__wrap{grid-template-columns:1fr}
+  .profile div{grid-template-columns:7em minmax(0,1fr)}
+}
+/* ================= 料金 PRICING — 技法 3 ================= */
+.price{position:relative; background:var(--kami); padding-block:clamp(80px,13vh,150px); overflow:hidden}
+.price__ink{position:absolute; top:-4%; left:-2%; width:min(46%,520px); pointer-events:none; opacity:.92}
+.price__wrap{position:relative; z-index:2; width:var(--col); margin-inline:auto}
+.plans{margin-top:clamp(34px,5vh,64px); display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:clamp(16px,2vw,26px)}
+.plan{
+  background:rgba(255,255,255,.62); border:1px solid var(--ink-16);
+  padding:clamp(24px,3vw,34px); display:flex; flex-direction:column; gap:16px;
+  backdrop-filter:blur(2px);
+}
+.plan--pick{border-color:var(--koke); box-shadow:0 0 0 1px var(--koke) inset}
+.plan__name{writing-mode:vertical-rl; text-orientation:upright; font-size:26px; letter-spacing:.24em; font-weight:600; height:4.6em}
+.plan__row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; border-top:1px dotted var(--ink-16); padding-top:12px}
+.plan__fee{font-family:var(--la); font-size:22px; letter-spacing:.06em}
+.plan ul{margin:0; padding:0; list-style:none; display:grid; gap:9px}
+.plan li{font-size:13.5px; line-height:1.9; letter-spacing:.04em; color:var(--ink-60); padding-left:16px; position:relative}
+.plan li::before{content:""; position:absolute; left:0; top:.85em; width:6px; height:6px; border-radius:50%; background:var(--koke)}
+.plan .book{justify-content:center; margin-top:auto}
+@media(max-width:700px){
+  .plan__name{writing-mode:horizontal-tb; text-orientation:mixed; height:auto; font-size:22px}
+}
+/* ================= 予約 BOOKING ================= */
+.reserve{position:relative; background:var(--sumi); color:var(--kami); padding-block:clamp(72px,12vh,140px)}
+.reserve__wrap{width:var(--col); margin-inline:auto; display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px,5vw,64px); align-items:center}
+.reserve .h2{color:var(--kami)}
+.slot{
+  border:1px dashed var(--paper-32); padding:clamp(22px,3vw,32px);
+  display:grid; gap:14px; background:rgba(245,243,238,.04);
+}
+.slot__title{font-size:15px; letter-spacing:.16em}
+.contact{display:grid; gap:10px; font-family:var(--ut); font-size:13px; color:var(--paper-60)}
+.contact a{border-bottom:1px solid var(--paper-32); padding-bottom:2px}
+.field{display:grid; gap:8px}
+.field .cap{color:var(--paper-60)}
+.field input,.field textarea{
+  width:100%; font-family:var(--ut); font-size:14px; color:var(--kami);
+  background:rgba(245,243,238,.06); border:1px solid var(--paper-32);
+  padding:11px 13px; resize:vertical;
+}
+.field input:focus-visible,.field textarea:focus-visible{outline:2px solid var(--sora); outline-offset:1px}
+.field input::placeholder,.field textarea::placeholder{color:var(--paper-32)}
+@media(max-width:820px){.reserve__wrap{grid-template-columns:1fr}}
+/* ================= 法定表記 LEGAL ================= */
+.legal{background:var(--washi); padding-block:clamp(64px,10vh,120px)}
+.legal__wrap{width:var(--col); margin-inline:auto}
+.acc{margin-top:30px; border-top:1px solid var(--sumi)}
+.acc details{border-bottom:1px solid var(--ink-16)}
+.acc summary{
+  list-style:none; cursor:pointer; padding:20px 0;
+  display:flex; align-items:center; gap:16px; font-size:16px; letter-spacing:.14em;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary i{
+  margin-left:auto; width:13px; height:13px; position:relative; flex:none;
+}
+.acc summary i::before,.acc summary i::after{
+  content:""; position:absolute; inset:50% 0 auto 0; height:1px; background:var(--sumi); transition:transform .35s;
+}
+.acc summary i::after{transform:rotate(90deg)}
+.acc details[open] summary i::after{transform:rotate(0)}
+.acc__body{padding:0 0 26px; max-width:76ch}
+.acc__body p{margin:0 0 1.2em; font-size:13.5px; line-height:2.15; color:var(--ink-60)}
+.acc .profile{margin-top:4px}
+/* ================= FOOTER ================= */
+.foot{background:var(--ai-deep); color:var(--paper-60); padding:clamp(40px,7vh,72px) 0 30px}
+.foot__wrap{width:var(--col); margin-inline:auto; display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:end}
+.foot__mark strong{display:block; color:var(--kami); font-size:18px; letter-spacing:.24em; font-weight:600}
+.foot__mark small{font-family:var(--la); letter-spacing:.3em; text-transform:uppercase; font-size:11.5px}
+.foot nav{display:flex; flex-wrap:wrap; gap:8px 24px; font-family:var(--ut); font-size:12px}
+/* ================= MOBILE RHYTHM ================= */
+/* on narrow screens the same vh-based padding used on desktop reads as
+   oversized, sparse whitespace against a much narrower text column —
+   tighten the vertical rhythm so mobile feels intentional, not just shrunk */
+@media(max-width:700px){
+  .concept,.life,.about,.price{padding-block:clamp(52px,9vh,90px)}
+  .features{padding-block:clamp(56px,9.5vh,96px)}
+  .reserve{padding-block:clamp(48px,8vh,84px)}
+  .legal{padding-block:clamp(44px,7vh,76px)}
+  .plans{margin-top:clamp(24px,4vh,40px)}
+  .grid{margin-top:clamp(26px,4vh,44px)}
+}
+/* ================= REDUCED MOTION ================= */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fall{animation:none; transform:translate(var(--xm),var(--ym)); opacity:.55}
+  .chain circle{animation:none; opacity:.3}
+  .settled{animation:none; opacity:1}
+  .brush-in{animation:none; stroke-dashoffset:0}
+  .scrollcue i{animation:none; transform:scaleX(1)}
+  *{transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a class="nav__mark" href="#top">
+    <strong lang="ja">魂の銘</strong><small>Beyond Culture</small>
+  </a>
+  <nav class="nav__links">
+    <a class="nav__link" href="#top" data-en="Home">ホーム</a>
+    <a class="nav__link" href="#concept" data-en="Concept">序</a>
+    <a class="nav__link" href="#features" data-en="Soul ID">Soul IDの機能</a>
+    <a class="nav__link" href="#about" data-en="Company">会社概要</a>
+    <a class="nav__link" href="#price" data-en="Pricing">料金</a>
+  </nav>
+  <button class="lang" id="lang" aria-label="言語を切り替える"><b>日本語</b>/<span>EN</span></button>
+  <a class="book" href="#reserve" data-en="Contact us">お問い合わせ</a>
+</header>
+<!-- ================= HERO :: 技法 5 + 6 + 1 ================= -->
+<section class="hero" id="top">
+  <div class="hero__stage" aria-hidden="true">
+    <svg viewBox="0 0 1200 820" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <!-- 技法1 : dewdrop / embossed glyph -->
+        <filter id="dew" x="-45%" y="-45%" width="190%" height="190%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2.6" result="b"/>
+          <feOffset in="b" dx="3" dy="5" result="off"/>
+          <feFlood flood-color="#8E9096" flood-opacity=".5" result="c"/>
+          <feComposite in="c" in2="off" operator="in" result="shadow"/>
+          <feSpecularLighting in="b" surfaceScale="5" specularConstant="1.15" specularExponent="28" lighting-color="#ffffff" result="sp">
+            <fePointLight x="-140" y="-200" z="230"/>
+          </feSpecularLighting>
+          <feComposite in="sp" in2="SourceAlpha" operator="in" result="spc"/>
+          <feMerge>
+            <feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="spc"/>
+          </feMerge>
+        </filter>
+        <!-- rim of the vessel: glyphs dissolve as they land -->
+        <linearGradient id="vanish" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+          <stop offset=".72" stop-color="#fff" stop-opacity="1"/>
+          <stop offset=".86" stop-color="#fff" stop-opacity=".25"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="rim"><rect width="1200" height="820" fill="url(#vanish)"/></mask>
+        <linearGradient id="bowlInk" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3A3F47"/><stop offset="1" stop-color="#14161A"/>
+        </linearGradient>
+      </defs>
+      <!-- 技法6 : dotted chains, generated -->
+      <g class="chains" id="chains" lang="ja" fill="#14161A"></g>
+      <!-- 技法1 : dewdrop kanji column, upper right -->
+      <g filter="url(#dew)" opacity=".62" id="dewcol" lang="ja"
+         font-family="Shippori Mincho B1, Noto Serif JP, Hiragino Mincho ProN, Yu Mincho, serif" font-size="62" fill="#DCD9D3" text-anchor="middle">
+        <text x="1082" y="132">記</text>
+        <text x="1082" y="212">憶</text>
+        <text x="1082" y="292">は</text>
+        <text x="1082" y="372">水</text>
+      </g>
+      <!-- 技法5 : calligraphy raining down -->
+      <g mask="url(#rim)" id="rain" lang="ja" font-family="Shippori Mincho B1, Noto Serif JP, Hiragino Mincho ProN, Yu Mincho, serif" fill="#14161A"></g>
+      <!-- 技法5 : the vessel — sumi brush bowl -->
+      <g id="vessel">
+        <path class="brush-in" style="--len:900"
+              d="M354 620 Q600 668 846 620" fill="none" stroke="url(#bowlInk)" stroke-width="7" stroke-linecap="round" opacity=".92"/>
+        <path class="brush-in" style="--len:1500"
+              d="M366 628 C392 762 486 820 600 820 C714 820 808 762 834 628"
+              fill="none" stroke="url(#bowlInk)" stroke-width="16" stroke-linecap="round"/>
+        <path d="M372 640 C398 762 488 812 600 812 C712 812 802 762 828 640 Z"
+              fill="#14161A" opacity=".07"/>
+        <!-- glyphs already gathered inside the bowl -->
+        <g class="settled" lang="ja" font-family="Shippori Mincho B1, Noto Serif JP, Hiragino Mincho ProN, Yu Mincho, serif" fill="#14161A" opacity=".55" text-anchor="middle">
+          <text x="520" y="700" font-size="21" opacity=".55">名</text>
+          <text x="576" y="722" font-size="26" opacity=".7">声</text>
+          <text x="636" y="704" font-size="19" opacity=".5">縁</text>
+          <text x="684" y="736" font-size="16" opacity=".4">恩</text>
+          <text x="470" y="678" font-size="15" opacity=".35">影</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="hero__inner">
+    <h1 class="hero__title" lang="ja">魂の銘</h1>
+    <div class="hero__meta">
+      <p class="hero__lat"><span class="ink">Soul&nbsp;ID</span></p>
+      <p class="lede"><span class="ink" data-en="While it's still possible, we can preserve it — the photographs, the voice, the words. Soul ID turns a life into something the next generation can hold.">
+        写真も声も、いまなら遺せます。<br>
+        魂の銘は、大切な方の記憶を写真・声・文章にして、次の世代へ手渡す仕事です。
+      </span></p>
+      <p class="cap"><span class="ink" data-en="Photo restoration · life interviews · autobiography · life documentary film">
+        写真の修復・AIカラー化 ／ ライフインタビュー ／ 自叙伝の執筆・製本 ／ ライフドキュメンタリー動画
+      </span></p>
+    </div>
+  </div>
+  <div class="hero__seal" aria-hidden="true"><span lang="ja">銘</span></div>
+  <div class="hero__foot">
+    <div class="scrollcue"><i></i><span class="eyebrow ink" data-en="Scroll">SCROLL</span></div>
+    <p class="cap" style="text-align:right"><span class="ink" data-en="Tokyo, Japan · soul-id.jp">東京 ／ soul-id.jp</span></p>
+  </div>
+</section>
+<!-- ================= 序 CONCEPT :: 技法 4 ================= -->
+<section class="concept" id="concept">
+  <div class="concept__thread" aria-hidden="true">
+    <svg viewBox="0 0 620 1000" preserveAspectRatio="xMidYMid meet" id="ribbon">
+      <path id="ribbonPath" class="brush-in" style="--len:2600"
+            d="M470 -20 C300 140 560 280 420 430 C300 560 520 660 390 800 C300 900 430 960 380 1030"
+            fill="none" stroke="#86A9E6" stroke-width="1.6" stroke-linecap="round"/>
+      <g id="barbs" stroke="#86A9E6" stroke-width="1.15" fill="none" stroke-linecap="round" opacity=".85"></g>
+    </svg>
+  </div>
+  <div class="concept__wrap">
+    <p class="vlabel" data-en="PREFACE">序・いのちの三段</p>
+    <div class="concept__body">
+      <p class="eyebrow" data-en="WHY WE BUILT THIS">なぜ、いま遺すのか</p>
+      <h2 class="h2" data-en="The mountain becomes a mountain again.">山は、また山になる。</h2>
+      <p class="lede" style="margin-top:26px" data-en="Zen master Qingyuan Weixin described three ways of seeing a mountain across one lifetime. Most families only reach the third — the plain, settled seeing — after the person is gone, and by then the fragments have already scattered.">
+        禅僧・青原惟信は、一つの生涯における山の見え方を三段に分けました。
+        多くのご家族が三つめの静かな眼にたどり着くのは、その方が旅立たれたあとです。
+        そのときにはもう、写真も声も、散り散りになっている。
+      </p>
+      <p class="lede" data-en="Soul ID is simply the work of gathering them while it is still easy — and shaping them into something a grandchild can hold.">
+        魂の銘は、まだ集められるうちに集めておく仕事です。
+        そして、孫の代の手にも渡るかたちへ整える仕事です。
+      </p>
+      <dl class="parable">
+        <div>
+          <dt data-en="Age 20 — the mountain is a mountain">二十歳／山は山であった</dt>
+          <dd><span class="cap" data-en="Everything is taken at face value. Photographs are simply photographs.">見えるものを、そのまま受け取る歳。写真は、ただの写真。</span></dd>
+        </div>
+        <div>
+          <dt data-en="Age 40 — the mountain is no longer a mountain">四十歳／山は山でなくなった</dt>
+          <dd><span class="cap" data-en="Nothing is simple any more. The same photograph carries a whole history.">何ひとつ単純ではなくなる歳。同じ一枚に、来歴が重なる。</span></dd>
+        </div>
+        <div>
+          <dt data-en="Age 60 — the mountain is only a mountain">六十歳／山は、ただ山になった</dt>
+          <dd><span class="cap" data-en="It becomes plain again — and this is the moment worth recording.">ふたたび、ただの山に戻る歳。この眼こそ、遺す価値がある。</span></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+<!-- ================= 機能 FEATURES :: 技法 7 + 8 ================= -->
+<section class="features" id="features">
+  <div class="features__field" aria-hidden="true">
+    <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+      <g id="arcs" fill="none" stroke="#86A9E6" stroke-width=".9" opacity=".5"></g>
+      <g id="dots"></g>
+      <g id="kanjiField" lang="ja" font-family="Shippori Mincho B1, Noto Serif JP, Hiragino Mincho ProN, Yu Mincho, serif" font-size="17" fill="#C8A24B" opacity=".62"></g>
+    </svg>
+  </div>
+  <div class="features__wrap">
+    <div class="features__head">
+      <div>
+        <p class="eyebrow eyebrow--on-dark" data-en="WHAT SOUL ID INCLUDES">Soul IDの機能</p>
+        <h2 class="h2" style="margin-top:14px" data-en="AI gives shape to a life well-lived.">AIの技術で、輝いた一生を、かたちに。</h2>
+      </div>
+      <p class="cap cap--on-dark" style="max-width:26em" data-en="One interview, told once. From it, AI helps shape whichever record suits you best — a restored photograph, a written autobiography, a recorded voice, or a short film. Each can be commissioned on its own, or combined into the complete Soul ID archive.">
+        一度のインタビューから、AIの技術を使ってお好みのかたちへ仕立てます。
+        写真の修復、自叙伝、声の記録、映像——単体でのご依頼も、
+        すべてを揃えた完全版としてのご依頼も承ります。
+      </p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <span class="card__no">01</span>
+        <span class="card__gl" aria-hidden="true" lang="ja">影</span>
+        <h3 data-en="Photo restoration &amp; AI colorization">写真の修復・AIカラー化</h3>
+        <p data-en="Faded or monochrome photographs are repaired and colorized by AI, then corrected by hand against your family's memory of the real colors — the face as it once shone, once more.">
+          褪せた写真、傷んだ白黒写真をAIで修復・彩色し、
+          ご家族の記憶に沿って一枚ずつ手で色を直します。輝いていた頃のお顔を、もう一度。
+        </p>
+        <span class="card__en">Restoration</span>
+      </article>
+      <article class="card">
+        <span class="card__no">02</span>
+        <span class="card__gl" aria-hidden="true" lang="ja">声</span>
+        <h3 data-en="Life interviews">ライフインタビュー</h3>
+        <p data-en="A two-hour recorded conversation, guided by an interviewer trained to draw out the stories a family has never quite asked for — the source material for everything else Soul ID can shape.">
+          専門の聞き手が二時間、ご本人に伺います。
+          家族だからこそ訊けなかった話を、記録として残します。ここで伺ったお話が、すべての土台になります。
+        </p>
+        <span class="card__en">Voice</span>
+      </article>
+      <article class="card">
+        <span class="card__no">03</span>
+        <span class="card__gl" aria-hidden="true" lang="ja">書</span>
+        <h3 data-en="Autobiography">自叙伝の執筆・製本</h3>
+        <p data-en="The interviews become a written life, edited into a bound volume — with enough copies for everyone who should have one.">
+          インタビューを一冊の文章に編み、製本します。
+          必要な部数を、渡すべき方の人数だけお作りします。
+        </p>
+        <span class="card__en">Book</span>
+      </article>
+      <article class="card">
+        <span class="card__no">04</span>
+        <span class="card__gl" aria-hidden="true" lang="ja">映</span>
+        <h3 data-en="Life documentary film">ライフドキュメンタリー動画</h3>
+        <p data-en="A short film woven from photographs, voice, and the places that mattered — to be watched together, now and for the years still to come.">
+          写真と声と、その人が愛した場所で編む短編映像です。
+          今も、これから先の年月も、大切な人たちと一緒に見返せるように。
+        </p>
+        <span class="card__en">Film</span>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ================= 生涯 TIMELINE :: 技法 9 + 露 ================= -->
+<section class="life">
+  <div class="life__grain" aria-hidden="true">
+    <svg preserveAspectRatio="none">
+      <defs><filter id="paperGrain">
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter></defs>
+      <rect width="100%" height="100%" filter="url(#paperGrain)" opacity=".55"/>
+    </svg>
+  </div>
+  <div class="life__wrap">
+    <div class="life__head">
+      <p class="eyebrow" data-en="THE RECORD">一生の目盛り</p>
+      <h2 class="h2" style="margin-top:14px" data-en="Ninety years, on one line.">九十年を、一本の線に。</h2>
+      <p class="lede" style="margin-top:22px" data-en="Every Soul ID begins here: one line, agreed with the family. Characters mark the turning points, and the dew settles where it settles. Everything we make afterwards hangs from this line.">
+        魂の銘は、この一本の線から始まります。節目に文字を置き、その上に露が結ぶ。
+        何を必ず残すのかをご家族と決め、以後のすべては、この線に沿って作られます。
+      </p>
+    </div>
+    <div class="life__chart">
+      <svg viewBox="0 0 1200 620" role="img"
+           aria-label="一生の節目を示す斜線と、節目ごとの露のしずく">
+        <defs>
+          <radialGradient id="dBody" cx="34%" cy="27%" r="72%">
+            <stop offset="0"   stop-color="#FFFFFF" stop-opacity=".82"/>
+            <stop offset=".40" stop-color="#F0F0ED" stop-opacity=".26"/>
+            <stop offset=".76" stop-color="#D2D2CE" stop-opacity=".44"/>
+            <stop offset=".94" stop-color="#FBFBFA" stop-opacity=".86"/>
+            <stop offset="1"   stop-color="#FFFFFF" stop-opacity=".96"/>
+          </radialGradient>
+          <filter id="dShadow" x="-40%" y="-40%" width="190%" height="190%">
+            <feGaussianBlur stdDeviation="5.5"/>
+          </filter>
+          <!-- one water droplet, reused at every scale -->
+          <symbol id="drop" viewBox="0 0 100 100">
+            <ellipse cx="56" cy="60" rx="41" ry="39" fill="#6B6D72" opacity=".40" filter="url(#dShadow)"/>
+            <circle cx="50" cy="50" r="40" fill="url(#dBody)"/>
+            <path d="M10.2 50 a39.8 39.8 0 0 0 79.6 0 z" fill="#ADADA9" opacity=".20"/>
+            <path d="M10.2 50 h79.6" fill="none" stroke="#7A7C80" stroke-width="1.1" opacity=".45"/>
+            <circle cx="50" cy="50" r="39.3" fill="none" stroke="#FFFFFF" stroke-width="1.8" opacity=".72"/>
+            <path d="M14 63 a38 38 0 0 0 29 25" fill="none" stroke="#FFFFFF" stroke-width="3.2" opacity=".5"/>
+            <ellipse cx="35" cy="29" rx="12" ry="8.5" fill="#FFFFFF" opacity=".95" transform="rotate(-28 35 29)"/>
+            <circle cx="66" cy="69" r="3.6" fill="#FFFFFF" opacity=".48"/>
+          </symbol>
+        </defs>
+        <g id="dewChart" lang="ja"></g>
+      </svg>
+    </div>
+    <div class="life__legend">
+      <span class="cap" data-en="Line — one lifetime">線 ── 一生</span>
+      <span class="cap" data-en="Characters — the turning points">文字 ── 節目</span>
+      <span class="cap" data-en="Dew — memory, as it settles">露 ── 記憶のしずく</span>
+    </div>
+  </div>
+</section>
+<!-- ================= 会社概要 ABOUT :: 技法 2 ================= -->
+<section class="about" id="about">
+  <div class="about__branch" aria-hidden="true">
+    <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax slice">
+      <g id="paving" stroke="#14161A" stroke-width=".7" opacity=".22" fill="none"></g>
+      <g id="branches" stroke="#14161A" stroke-width="1.15" fill="none" stroke-linecap="round" opacity=".72"></g>
+      <g id="blossoms" fill="#B03A2B" opacity=".85"></g>
+      <!-- 技法2 : the bird -->
+      <g id="bird" transform="translate(742,64)" fill="#14161A" opacity=".9">
+        <path d="M0 12 C6 2 20 -4 32 0 C42 3 48 9 46 14 C44 19 32 22 20 21 C10 20 3 17 0 12 Z"/>
+        <path d="M46 14 L60 9 L47 17 Z"/>
+        <circle cx="10" cy="9" r="1.5" fill="#F5F3EE"/>
+      </g>
+    </svg>
+  </div>
+  <div class="about__wrap">
+    <div>
+      <p class="eyebrow" data-en="COMPANY">会社概要</p>
+      <h2 class="h2" style="margin-top:14px" data-en="Beyond Culture">Beyond&nbsp;Culture</h2>
+      <p class="lede" style="margin-top:22px" data-en="We build AI-driven products around Japanese cultural practice. Soul ID is our first consumer service — memorial work, made properly, at a price a family can actually agree on.">
+        日本の文化的な営みを、AIの技術で支えるプロダクトをつくっています。
+        魂の銘は、その最初の一般向けサービスです。
+      </p>
+    </div>
+    <dl class="profile">
+      <div><dt data-en="Legal name">商号</dt><dd data-en="Beyond Culture Dubu Culture Co., Ltd.">Beyond Culture 獨歩文化株式会社</dd></div>
+      <div><dt data-en="Address">所在地</dt><dd data-en="5-72, 5F Omorikitaguchi Bldg., 2-5-13 Sanno, Ota-ku, Tokyo 143-0023, Japan">〒143-0023 東京都大田区山王２丁目５番１３号 大森北口ビル５Ｆ５－７２</dd></div>
+      <div><dt data-en="Representative">代表者</dt><dd data-en="Representative Director Fu Fengguo">代表取締役 傅豊国</dd></div>
+      <div><dt data-en="Founded">設立</dt><dd data-en="October 18, 2023">2023年10月18日</dd></div>
+      <div><dt data-en="Capital">資本金</dt><dd data-en="JPY 5,000,000">500万円</dd></div>
+      <div><dt data-en="Corporate number">法人番号</dt><dd>6011701025709</dd></div>
+      <div><dt data-en="Business">事業内容</dt><dd data-en="AI-driven cultural products and services; memorial photography, film, and publishing">AIを活用した文化事業の企画・開発／遺影写真・映像・出版</dd></div>
+      <div><dt data-en="Contact">連絡先</dt><dd><a href="mailto:info@soul-id.jp" style="border-bottom:1px solid var(--ink-16)">info@soul-id.jp</a></dd></div>
+    </dl>
+  </div>
+</section>
+<!-- ================= 料金 PRICING :: 技法 3 ================= -->
+<section class="price" id="price">
+  <div class="price__ink" aria-hidden="true">
+    <svg viewBox="0 0 520 620">
+      <defs>
+        <filter id="torn"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="4" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/></filter>
+        <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".08" numOctaves="3" seed="3" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+      </defs>
+      <!-- torn aged-paper fragments carrying character rubbings -->
+      <g filter="url(#torn)" opacity=".5">
+        <rect x="150" y="120" width="66" height="230" fill="#14161A" opacity=".82"/>
+        <rect x="252" y="168" width="60" height="212" fill="#14161A" opacity=".72"/>
+        <rect x="158" y="176" width="50" height="26" fill="#F5F3EE" opacity=".85"/>
+        <rect x="158" y="240" width="50" height="18" fill="#F5F3EE" opacity=".7"/>
+        <rect x="260" y="216" width="44" height="30" fill="#F5F3EE" opacity=".8"/>
+        <rect x="260" y="300" width="44" height="16" fill="#F5F3EE" opacity=".6"/>
+      </g>
+      <!-- two tapered brush strokes, the 竹-like uprights -->
+      <g filter="url(#rough)" fill="#14161A" opacity=".72">
+        <path d="M148 86 L232 74 L214 128 L156 132 Z"/>
+        <path d="M250 132 L330 120 L312 172 L258 176 Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="price__wrap">
+    <p class="eyebrow" data-en="PRICING">料金</p>
+    <h2 class="h2" style="margin-top:14px" data-en="Four records, each on its own.">四つの記録、それぞれに。</h2>
+    <p class="lede" style="margin-top:20px" data-en="Reference prices below. Each piece can be commissioned on its own — the final estimate depends on the volume of material and the length of the film, and we always confirm it with you before work begins.">
+      以下は参考価格です。内容や制作規模により実際のお見積りは異なります。
+      着手前に必ずご確認のうえ、進め方をご相談いたします。
+    </p>
+    <div class="plans">
+      <article class="plan">
+        <span class="plan__name" lang="ja">語り</span>
+        <p class="cap" data-en="Life interview — we interview you about your life experiences and values, then record and organize them.">
+          人生インタビュー。お客様の人生経験や価値観についてインタビューを行い、記録・整理します。
+        </p>
+        <div class="plan__row"><span class="cap" data-en="From">料金</span><span class="plan__fee" data-en="From ¥30,000">30,000円〜</span></div>
+        <a class="book" href="#reserve" data-en="Ask about the life interview">相談する</a>
+      </article>
+      <article class="plan">
+        <span class="plan__name" lang="ja">自伝</span>
+        <p class="cap" data-en="Autobiography production — your life story is interviewed, written up, and produced as a bound autobiography.">
+          自伝制作サービス。人生ストーリーをインタビューし、文章として整理し自伝として制作します。
+        </p>
+        <div class="plan__row"><span class="cap" data-en="From">料金</span><span class="plan__fee" data-en="From ¥50,000">50,000円〜</span></div>
+        <a class="book" href="#reserve" data-en="Ask about the autobiography">相談する</a>
+      </article>
+      <article class="plan">
+        <span class="plan__name" lang="ja">映像</span>
+        <p class="cap" data-en="Life documentary film — your experiences and values are recorded on film and produced as a documentary piece.">
+          人生ドキュメンタリー映像制作。人生経験や価値観を映像として記録し、ドキュメンタリー作品として制作します。
+        </p>
+        <div class="plan__row"><span class="cap" data-en="From">料金</span><span class="plan__fee" data-en="From ¥100,000">100,000円〜</span></div>
+        <a class="book" href="#reserve" data-en="Ask about the documentary film">相談する</a>
+      </article>
+      <article class="plan plan--pick">
+        <span class="plan__name" lang="ja">銘</span>
+        <p class="cap" data-en="Soul ID production — a two-character inscription symbolizing a life's philosophy, delivered as a piece of digital cultural content.">
+          SoulID（魂の銘）制作。人生理念を象徴する二文字の銘を制作し、デジタル文化コンテンツとして提供します。
+        </p>
+        <div class="plan__row"><span class="cap" data-en="From">料金</span><span class="plan__fee" data-en="From ¥20,000">20,000円〜</span></div>
+        <a class="book" href="#reserve" data-en="Ask about Soul ID">相談する</a>
+      </article>
+    </div>
+    <p class="cap" style="margin-top:22px" data-en="Prices above are tax-included reference prices; the final figure varies by service content and production scope. Please contact us for details — we aim to make the experience as easy and worthwhile as possible, so feel free to reach out with any questions.">
+      ※上記は消費税込みの参考価格です。実際の料金はサービス内容や制作内容により異なります。詳細はお問い合わせください。お客様にとってより使いやすく、価値ある体験をご提供できるよう尽力してまいります。何かご質問やご不明点がございましたら、お気軽にお知らせください。
+    </p>
+  </div>
+</section>
+<!-- ================= お問い合わせ CONTACT ================= -->
+<section class="reserve" id="reserve">
+  <div class="reserve__wrap">
+    <div>
+      <p class="eyebrow eyebrow--on-dark" data-en="CONTACT US">お問い合わせ</p>
+      <h2 class="h2" style="margin-top:14px" data-en="Start with a conversation.">まず、お話を伺います。</h2>
+      <p class="lede lede--on-dark" style="margin-top:22px" data-en="Send us a message and we'll reply by email. Mention one photograph if you have it — that is usually enough to see what the record should be.">
+        下記フォームよりメールにてお問い合わせください。
+        お手元に写真が一枚あれば十分です。そこから、何を残すべきかが見えてきます。
+      </p>
+      <div class="contact" style="margin-top:28px">
+        <span data-en="Replies within 1 business day, JST">平日1営業日以内にご返信いたします</span>
+        <a href="mailto:info@soul-id.jp">info@soul-id.jp</a>
+      </div>
+    </div>
+    <form class="slot" id="contactForm">
+      <p class="slot__title" data-en="Send an inquiry">お問い合わせフォーム</p>
+      <p class="cap cap--on-dark" data-en="Fill this in and your email app will open with the message ready to send to info@soul-id.jp.">
+        ご入力後、送信ボタンを押すとお使いのメールソフトが開き、内容を確認のうえ送信いただけます。
+      </p>
+      <label class="field">
+        <span class="cap" data-en="Name">お名前<span aria-hidden="true">＊</span></span>
+        <input type="text" name="name" required autocomplete="name">
+      </label>
+      <label class="field">
+        <span class="cap" data-en="Email address">メールアドレス<span aria-hidden="true">＊</span></span>
+        <input type="email" name="email" required autocomplete="email">
+      </label>
+      <label class="field">
+        <span class="cap" data-en="Message">お問い合わせ内容<span aria-hidden="true">＊</span></span>
+        <textarea name="message" rows="4" required></textarea>
+      </label>
+      <button type="submit" class="book" style="justify-content:center" data-en="Send by email">メールで送信する</button>
+    </form>
+  </div>
+</section>
+<!-- ================= 法定表記 LEGAL ================= -->
+<section class="legal" id="legal">
+  <div class="legal__wrap">
+    <p class="eyebrow" data-en="REQUIRED DISCLOSURES">法定表記</p>
+    <h2 class="h2" style="margin-top:14px" data-en="Terms, privacy, and the Specified Commercial Transactions notice.">利用規約・個人情報・特定商取引法に基づく表記</h2>
+    <div class="acc">
+      <details>
+        <summary><span data-en="Notice under the Act on Specified Commercial Transactions">特定商取引法に基づく表記</span><i aria-hidden="true"></i></summary>
+        <div class="acc__body">
+          <dl class="profile">
+            <div><dt data-en="Seller">販売業者</dt><dd data-en="Beyond Culture Dubu Culture Co., Ltd.">Beyond Culture 獨歩文化株式会社</dd></div>
+            <div><dt data-en="Manager">運営責任者</dt><dd data-en="Fu Fengguo">傅豊国</dd></div>
+            <div><dt data-en="Address">所在地</dt><dd data-en="5-72, 5F Omorikitaguchi Bldg., 2-5-13 Sanno, Ota-ku, Tokyo 143-0023, Japan">〒143-0023 東京都大田区山王２丁目５番１３号 大森北口ビル５Ｆ５－７２</dd></div>
+            <div><dt data-en="Phone">電話番号</dt><dd data-en="Disclosed without delay upon request. Please contact us by email.">ご請求いただいた場合には、遅滞なく開示いたします。まずはメールにてお問い合わせください。</dd></div>
+            <div><dt data-en="Email">メール</dt><dd>info@soul-id.jp</dd></div>
+            <div><dt data-en="Price">販売価格</dt><dd data-en="Reference prices (tax included) from ¥20,000 (Soul ID), ¥30,000 (life interview), ¥50,000 (autobiography) and ¥100,000 (documentary film) depending on the service; see 料金 section. Final quotation is confirmed per commission before work begins.">サービスにより20,000円〜／30,000円〜／50,000円〜／100,000円〜（消費税込・参考価格、詳細は「料金」欄）。実際の金額はご依頼ごとに着手前に確定してお伝えします。</dd></div>
+            <div><dt data-en="Additional fees">商品代金以外の必要料金</dt><dd data-en="Shipping of prints and bound volumes; bank transfer fees.">プリント・製本物の送料、振込手数料</dd></div>
+            <div><dt data-en="Payment">支払方法</dt><dd data-en="Bank transfer or credit card">銀行振込／クレジットカード</dd></div>
+            <div><dt data-en="Payment timing">支払時期</dt><dd data-en="50% on order, balance on delivery">ご発注時に50%、納品時に残額</dd></div>
+            <div><dt data-en="Delivery">引渡時期</dt><dd data-en="As stated in the quotation; typically 2 weeks to 3 months.">見積書記載の期日（目安：二週間〜三ヶ月）</dd></div>
+            <div><dt data-en="Cancellation">返品・キャンセル</dt><dd data-en="Free of charge before work begins. Once production has started, costs incurred to date are payable. Defective goods are replaced at our cost.">着手前は無償。着手後は実費をご負担いただきます。不良品は当社負担で再製作いたします。</dd></div>
+          </dl>
+        </div>
+      </details>
+      <details>
+        <summary><span data-en="Privacy policy">プライバシーポリシー</span><i aria-hidden="true"></i></summary>
+        <div class="acc__body">
+          <p data-en="We handle personal information under Japan's Act on the Protection of Personal Information. This page collects a name, contact details and the content of your enquiry, used only to respond to it and to carry out commissioned work.">
+            当社は個人情報保護法に基づき個人情報を取り扱います。本サイトでは、お名前・ご連絡先・お問い合わせ内容を取得し、ご返信および受託業務の遂行にのみ使用します。
+          </p>
+          <p data-en="Photographs, recordings and documents entrusted to us are stored on access-controlled servers, used solely for the commissioned work, and returned or deleted on request. We do not provide personal information to third parties without consent, except as required by law.">
+            お預かりした写真・録音・書類はアクセス制限下のサーバーで保管し、受託業務以外には使用しません。ご要望に応じ返却または消去いたします。法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはありません。
+          </p>
+          <p data-en="For disclosure, correction or deletion of your data, contact info@soul-id.jp.">
+            開示・訂正・削除のご請求は info@soul-id.jp までご連絡ください。
+          </p>
+        </div>
+      </details>
+      <details>
+        <summary><span data-en="Terms of service">利用規約</span><i aria-hidden="true"></i></summary>
+        <div class="acc__body">
+          <p data-en="These terms govern use of this site and of services commissioned through it. By placing an order you agree to them.">
+            本規約は、本サイトおよび本サイトを通じて受託するサービスの利用に適用されます。ご発注をもって本規約に同意いただいたものとします。
+          </p>
+          <p data-en="Copyright in delivered films, books and images passes to the client on final payment. We may not use any delivered work as a sample without written permission. The client warrants that they hold the rights to materials they entrust to us.">
+            納品物（映像・書籍・画像）の著作権は、残金のお支払いをもってお客様に移転します。当社は書面による許諾なく納品物を実績として使用しません。お預かりする素材については、お客様が権利を有することを前提といたします。
+          </p>
+          <p data-en="Our liability is limited to the amount paid for the commission. Terms may be revised; the current version is the one published on this page.">
+            当社の責任は、当該ご依頼のお支払額を上限とします。本規約は改定されることがあり、本ページ掲載の最新版が適用されます。
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <div class="foot__wrap">
+    <div class="foot__mark">
+      <strong lang="ja">魂の銘</strong>
+      <small>Beyond Culture · Soul ID</small>
+    </div>
+    <nav>
+      <a href="#concept" data-en="Concept">序</a>
+      <a href="#features" data-en="Soul ID">Soul IDの機能</a>
+      <a href="#about" data-en="Company">会社概要</a>
+      <a href="#price" data-en="Pricing">料金</a>
+      <a href="#legal" data-en="Legal">法定表記</a>
+      <a href="#reserve" data-en="Contact">お問い合わせ</a>
+    </nav>
+    <p class="cap cap--on-dark" style="width:100%;margin:0">© <span id="yr"></span> Beyond Culture. soul-id.jp</p>
+  </div>
+</footer>
+<script>
+(function(){
+  "use strict";
+  var NS="http://www.w3.org/2000/svg";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  /* ---------- 技法5 : calligraphy raining into the vessel ---------- */
+  var GLYPHS="名声縁恩影時家光道文書音記憶想継魂銘生涯父母祖孫恵灯歌".split("");
+  var rain=document.getElementById("rain");
+  if(rain){
+    for(var i=0;i<64;i++){
+      var x0=rnd(120,1080);
+      var x1=600+(x0-600)*rnd(0.14,0.34);      // converge toward the bowl
+      var size=rnd(13,30);
+      var t=el("text",{x:0,y:0,"font-size":size.toFixed(1),"text-anchor":"middle"});
+      t.setAttribute("class","fall");
+      t.textContent=pick(GLYPHS);
+      t.style.setProperty("--x0",x0.toFixed(0)+"px");
+      t.style.setProperty("--x1",x1.toFixed(0)+"px");
+      t.style.setProperty("--xm",((x0+x1)/2).toFixed(0)+"px");
+      t.style.setProperty("--ym",rnd(120,470).toFixed(0)+"px");
+      t.style.setProperty("--dur",rnd(11,22).toFixed(1)+"s");
+      t.style.setProperty("--delay",(-rnd(0,22)).toFixed(1)+"s");
+      t.style.setProperty("--op",(size>24?0.72:0.42).toFixed(2));
+      rain.appendChild(t);
+    }
+  }
+  /* ---------- 技法6 : dotted chains ---------- */
+  var chains=document.getElementById("chains");
+  if(chains){
+    for(var c=0;c<26;c++){
+      var cx=rnd(40,1160), y=rnd(-20,60), g=el("g",{});
+      g.setAttribute("class","chain");
+      g.style.setProperty("--delay",(-rnd(0,8)).toFixed(1)+"s");
+      g.style.setProperty("--sd",rnd(5,11).toFixed(1)+"s");
+      while(y<rnd(380,620)){
+        var r=rnd(.8,4.2);
+        g.appendChild(el("circle",{cx:(cx+rnd(-3,3)).toFixed(1),cy:y.toFixed(1),r:r.toFixed(2),
+          "fill-opacity":(0.10+r/14).toFixed(2)}));
+        y+=r*2+rnd(4,17);
+      }
+      chains.appendChild(g);
+    }
+  }
+  /* ---------- 技法4 : leaf barbs along the ribbon ---------- */
+  var path=document.getElementById("ribbonPath"), barbs=document.getElementById("barbs");
+  if(path&&barbs&&path.getTotalLength){
+    var L=path.getTotalLength();
+    path.style.setProperty("--len",L.toFixed(0));
+    for(var s=14;s<L-10;s+=13){
+      var p=path.getPointAtLength(s), q=path.getPointAtLength(s+6);
+      var ang=Math.atan2(q.y-p.y,q.x-p.x);
+      var len=9+7*Math.sin(s/46);
+      [-1,1].forEach(function(side){
+        var a=ang+side*(Math.PI/2.45);
+        barbs.appendChild(el("path",{d:"M"+p.x.toFixed(1)+" "+p.y.toFixed(1)+
+          " q"+(Math.cos(a)*len*0.55).toFixed(1)+" "+(Math.sin(a)*len*0.55).toFixed(1)+
+          " "+(Math.cos(a)*len).toFixed(1)+" "+(Math.sin(a)*len*0.8).toFixed(1)}));
+      });
+    }
+  }
+  /* ---------- 技法7 + 8 : dots and kanji strung along swooping arcs ---------- */
+  var arcs=document.getElementById("arcs"),dots=document.getElementById("dots"),kf=document.getElementById("kanjiField");
+  if(arcs&&dots&&kf){
+    var COLS=["#9DAC7C","#86A9E6","#F5F3EE","#C8A24B"];
+    for(var a=0;a<9;a++){
+      var sx=rnd(-60,420), sy=rnd(760,980);
+      var d="M"+sx.toFixed(0)+" "+sy.toFixed(0)+
+            " C"+rnd(300,620).toFixed(0)+" "+rnd(520,760).toFixed(0)+
+            " "+rnd(640,980).toFixed(0)+" "+rnd(160,460).toFixed(0)+
+            " "+rnd(1000,1320).toFixed(0)+" "+rnd(-40,240).toFixed(0);
+      var pa=el("path",{d:d}); arcs.appendChild(pa);
+      var pl=pa.getTotalLength?pa.getTotalLength():0;
+      for(var t2=rnd(20,60);t2<pl;t2+=rnd(46,120)){
+        var pt=pa.getPointAtLength(t2);
+        if(Math.random()<0.62){
+          dots.appendChild(el("circle",{cx:pt.x.toFixed(1),cy:pt.y.toFixed(1),
+            r:rnd(2.6,6.4).toFixed(1),fill:pick(COLS),"fill-opacity":rnd(.5,.95).toFixed(2)}));
+        }else{
+          var k=el("text",{x:(pt.x+rnd(-6,6)).toFixed(1),y:pt.y.toFixed(1),
+            "font-size":rnd(13,22).toFixed(0),"text-anchor":"middle"});
+          k.textContent=pick(["憶","想","継"]);
+          kf.appendChild(k);
+        }
+      }
+    }
+  }
+  /* ---------- 技法9 + 露 : the dewdrop life line ---------- */
+  var dewSvg=document.querySelector(".life__chart svg");
+  var dew=document.getElementById("dewChart");
+  if(dew&&dewSvg){
+    /* 節目 : label, caption, droplet weight (= how much material survives) */
+    var ALL=[
+      ["二十","生家"],["三十","独立"],["四十","仕事の頂"],["五十","転機"],
+      ["六十","次の代へ"],["七十","語り始め"],["八十","記録を託す"],["九十","遺すかたち"]
+    ];
+    var band="";
+    /* seeded RNG: a fresh scatter each visit, but the same one through a resize */
+    var seed=(Math.random()*4294967296)>>>0, rs=seed;
+    function rr(){
+      rs=rs+0x6D2B79F5|0;
+      var t=Math.imul(rs^rs>>>15,1|rs);
+      t=t+Math.imul(t^t>>>7,61|t)^t;
+      return ((t^t>>>14)>>>0)/4294967296;
+    }
+    function rf(a,b){return a+rr()*(b-a);}
+    function buildDew(){
+      var w=innerWidth, b = w<640?"s" : (w<1000?"m":"l");
+      if(b===band) return; band=b;
+      rs=seed;
+      while(dew.firstChild) dew.removeChild(dew.firstChild);
+      var stops = b==="s" ? [ALL[0],ALL[2],ALL[4],ALL[7]]
+                : b==="m" ? [ALL[0],ALL[2],ALL[3],ALL[4],ALL[6],ALL[7]]
+                : ALL;
+      var G    = b==="s" ? 34 : 36;          /* glyph size, in user units */
+      var lead = G*1.42;                     /* vertical rhythm of a column */
+      var VW   = b==="s" ? 470 : (b==="m" ? 840 : 1200);
+      var pad  = G*1.9;
+      var X1=pad, X2=VW-pad;
+      var Y1   = b==="s" ? 196 : 254;
+      var Y2   = Y1 - (b==="s" ? 96 : 192);
+      var gap  = (X2-X1)/stops.length;
+      var rCap = gap*0.46;                   /* keep neighbouring drops from colliding */
+      var maxY = Y1;                         /* deepest point reached by any column */
+      var pending=[];
+      var drop=function(cx,cy,r){pending.push([cx,cy,Math.min(r,rCap)]);};
+      /* how a single glyph gets wet: usually not at all, sometimes a bead
+         cluster, sometimes one drop that swallows the character whole */
+      var dress=function(cx,base,gs){
+        var cy=base-gs*0.34, p=rr();
+        if(p<0.44) return;
+        if(p<0.73){
+          drop(cx+rf(-gs*.09,gs*.09), cy+rf(-gs*.07,gs*.07), gs*rf(0.40,0.74));
+        }else if(p<0.91){
+          var n=2+(rr()<0.45?1:0);
+          while(n--) drop(cx+rf(-gs*.36,gs*.36), cy+rf(-gs*.32,gs*.28), gs*rf(0.12,0.27));
+        }else{
+          drop(cx+rf(-gs*.06,gs*.11), cy, gs*rf(0.54,0.82));
+          drop(cx+rf(-gs*.55,-gs*.28), cy+rf(-gs*.34,gs*.02), gs*rf(0.10,0.21));
+        }
+      };
+      var line=el("line",{x1:X1,y1:Y1,x2:X2,y2:Y2,stroke:"#4A4C50",
+        "stroke-width":(G/38).toFixed(2),"stroke-opacity":".5"});
+      line.setAttribute("class","brush-in");
+      line.style.setProperty("--len",Math.hypot(X2-X1,Y2-Y1).toFixed(0));
+      dew.appendChild(line);
+      var ang=Math.atan2(Y2-Y1,X2-X1)*180/Math.PI;
+      var cy0=Y1-G*0.42;
+      var capt=el("text",{x:(X1+G*0.4).toFixed(1),y:cy0.toFixed(1),
+        "font-family":"Zen Kaku Gothic New, Noto Sans JP, Hiragino Sans, Yu Gothic, Meiryo, sans-serif","font-size":(G*0.31).toFixed(1),
+        "letter-spacing":(G*0.11).toFixed(1),fill:"#4A4C50","fill-opacity":".45",
+        transform:"rotate("+ang.toFixed(2)+" "+(X1+G*0.4).toFixed(1)+" "+cy0.toFixed(1)+")"});
+      capt.textContent = b==="s" ? "A LIFE MEASURED IN WHAT REMAINS"
+        : "A LIFE MEASURED IN WHAT REMAINS ・ BEYOND CULTURE — SOUL ID";
+      dew.appendChild(capt);
+      stops.forEach(function(st,i){
+        var f=(i+0.5)/stops.length;
+        var px=X1+(X2-X1)*f, py=Y1+(Y2-Y1)*f;
+        /* the drop resting on the line: mostly modest, occasionally a heavy one */
+        drop(px+rf(-G*.12,G*.12), py, G*(rr()<0.26 ? rf(0.95,1.55) : rf(0.34,0.92)));
+        var y=py+G*1.7, gA=G*0.95, gC=G*0.72;
+        st[0].split("").forEach(function(ch){           /* the age, hairline, one glyph per line */
+          var t=el("text",{x:px.toFixed(1),y:y.toFixed(1),
+            "font-size":gA.toFixed(1),"text-anchor":"middle"});
+          t.setAttribute("class","dewage"); t.textContent=ch; dew.appendChild(t);
+          dress(px,y,gA); y+=lead;
+        });
+        y+=G*0.34;
+        st[1].split("").forEach(function(ch){           /* the caption, hairline, same column */
+          var t=el("text",{x:px.toFixed(1),y:y.toFixed(1),
+            "font-size":gC.toFixed(1),"text-anchor":"middle"});
+          t.setAttribute("class","dewglyph"); t.textContent=ch; dew.appendChild(t);
+          dress(px,y,gC); y+=lead*0.82;
+        });
+        if(rr()<0.5) drop(px+rf(-G*.45,G*.45), y+rf(G*.2,G*1.0), G*rf(0.07,0.19));
+        maxY=Math.max(maxY,y);
+      });
+      var VH=Math.round(maxY+G*1.5);
+      dewSvg.setAttribute("viewBox","0 0 "+VW+" "+VH);
+      /* lone drops in the empty paper between columns */
+      for(var d=0,dn=(b==="s"?9:17);d<dn;d++)
+        drop(rf(pad*0.5,VW-pad*0.5), rf(G*0.6,VH-G*0.6), G*(rr()<0.15?rf(0.22,0.34):rf(0.05,0.17)));
+      pending.forEach(function(o){                      /* drops last, so they sit on top */
+        var u=el("use",{x:(o[0]-o[2]).toFixed(1),y:(o[1]-o[2]).toFixed(1),
+          width:(o[2]*2).toFixed(1),height:(o[2]*2).toFixed(1)});
+        u.setAttribute("href","#drop"); dew.appendChild(u);
+      });
+    }
+    buildDew();
+    var dt; addEventListener("resize",function(){clearTimeout(dt);dt=setTimeout(buildDew,180);},{passive:true});
+  }
+  /* ---------- hero framing: crop on desktop, fit on narrow screens ---------- */
+  var heroSvg=document.querySelector(".hero__stage svg");
+  function fitHero(){
+    if(!heroSvg) return;
+    heroSvg.setAttribute("preserveAspectRatio", innerWidth<900 ? "xMidYMax meet" : "xMidYMax slice");
+  }
+  fitHero(); addEventListener("resize",fitHero,{passive:true});
+  /* ---------- nav: invert over dark sections ---------- */
+  var nav=document.getElementById("nav");
+  var darks=[].slice.call(document.querySelectorAll(".features,.reserve"));
+  function onScroll(){
+    var y=nav.getBoundingClientRect().bottom;
+    var over=darks.some(function(s){var r=s.getBoundingClientRect();return r.top<y&&r.bottom>y;});
+    nav.classList.toggle("is-dark",over);
+  }
+  addEventListener("scroll",onScroll,{passive:true}); onScroll();
+  /* ---------- JP / EN toggle (JP is primary) ---------- */
+  var isEN=false, btn=document.getElementById("lang");
+  btn.addEventListener("click",function(){
+    isEN=!isEN;
+    document.querySelectorAll("[data-en]").forEach(function(n){
+      if(!n.dataset.jp) n.dataset.jp=n.innerHTML;
+      n.innerHTML = isEN ? n.dataset.en : n.dataset.jp;
+    });
+    document.documentElement.lang = isEN ? "en" : "ja";
+    btn.innerHTML = isEN ? "<span>日本語</span>/<b>EN</b>" : "<b>日本語</b>/<span>EN</span>";
+  });
+  /* ---------- contact form: build a mailto: draft from the fields ---------- */
+  var contactForm=document.getElementById("contactForm");
+  if(contactForm){
+    contactForm.addEventListener("submit",function(e){
+      e.preventDefault();
+      var name=(contactForm.elements.name.value||"").trim();
+      var email=(contactForm.elements.email.value||"").trim();
+      var message=(contactForm.elements.message.value||"").trim();
+      var subject = isEN ? "Inquiry from " + name : name + "様からのお問い合わせ";
+      var bodyLines = isEN
+        ? ["Name: " + name, "Email: " + email, "", message]
+        : ["お名前：" + name, "メールアドレス：" + email, "", message];
+      var body = bodyLines.join("\n");
+      var href = "mailto:info@soul-id.jp"
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+      window.location.href = href;
+    });
+  }
+})();
+</script>
+</body>
+</html>
