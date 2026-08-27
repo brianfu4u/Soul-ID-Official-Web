@@ -1,0 +1,74 @@
+name: Deploy production website
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+      - .github/workflows/deploy.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: soul-id-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Upload index.html to お名前.com
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Validate production file
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          grep -Eiq '<!doctype[[:space:]]+html' index.html
+          grep -Eiq '<html[^>]+lang="ja"' index.html
+
+      - name: Upload and verify index.html
+        shell: bash
+        env:
+          ONAMAE_FTP_SERVER: ${{ secrets.ONAMAE_FTP_SERVER }}
+          ONAMAE_FTP_USERNAME: ${{ secrets.ONAMAE_FTP_USERNAME }}
+          ONAMAE_FTP_PASSWORD: ${{ secrets.ONAMAE_FTP_PASSWORD }}
+          ONAMAE_REMOTE_DIR: ${{ secrets.ONAMAE_REMOTE_DIR }}
+        run: |
+          set -euo pipefail
+
+          : "${ONAMAE_FTP_SERVER:?Missing ONAMAE_FTP_SERVER}"
+          : "${ONAMAE_FTP_USERNAME:?Missing ONAMAE_FTP_USERNAME}"
+          : "${ONAMAE_FTP_PASSWORD:?Missing ONAMAE_FTP_PASSWORD}"
+          : "${ONAMAE_REMOTE_DIR:?Missing ONAMAE_REMOTE_DIR}"
+
+          remote_dir="${ONAMAE_REMOTE_DIR%/}"
+          case "$remote_dir" in
+            /home/*/public_html/*)
+              remote_dir="/${remote_dir#*/public_html/}"
+              ;;
+          esac
+          remote_dir="/${remote_dir#/}"
+          remote_url="ftp://${ONAMAE_FTP_SERVER}${remote_dir}/index.html"
+          downloaded_file="${RUNNER_TEMP}/soul-id-index.html"
+
+          curl --fail --show-error --silent --disable-epsv \
+            --retry 2 \
+            --user "${ONAMAE_FTP_USERNAME}:${ONAMAE_FTP_PASSWORD}" \
+            --upload-file index.html \
+            "$remote_url"
+
+          curl --fail --show-error --silent --disable-epsv \
+            --retry 2 \
+            --user "${ONAMAE_FTP_USERNAME}:${ONAMAE_FTP_PASSWORD}" \
+            --output "$downloaded_file" \
+            "$remote_url"
+
+          test "$(sha256sum index.html | cut -d' ' -f1)" = \
+               "$(sha256sum "$downloaded_file" | cut -d' ' -f1)"
