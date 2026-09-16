@@ -212,6 +212,15 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
   .hero__stage{inset:auto 0 84px 0; height:min(40svh,330px)}
   .hero__foot{padding-block:14px 22px}
   .hero__seal{display:none}
+
+  /* Strip patchy .ink backgrounds on narrow screens */
+  .hero__inner .ink {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
 }
 
 /* short viewports (landscape phones) — pull the band in further */
