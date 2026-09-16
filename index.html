@@ -194,7 +194,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
 @keyframes draw{to{stroke-dashoffset:0}}
 @media(max-width:700px){
   /* rows: [copy] [breathing gap] [artwork band] [caption row] */
-  .hero{grid-template-rows:auto 1fr auto; padding-top:60px}
+  .hero{grid-template-rows:auto minmax(190px,1fr) auto; padding-top:60px}
 
   /* vertical title and body copy sit side by side, so the title no longer
      leaves a dead column on the right */
@@ -204,30 +204,58 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
     column-gap:16px; align-items:start;
   }
   .hero__title{height:auto; margin:0; letter-spacing:.2em; font-size:clamp(38px,11vw,54px)}
-  .hero__meta{margin-top:2px; max-width:none; gap:12px}
+  .hero__meta{margin-top:2px; max-width:none; gap:10px}
   .hero__lat{font-size:16px; letter-spacing:.34em}
 
-  /* artwork is pinned to a band above the caption row — it can no longer
-     reach SCROLL or the 東京 caption */
-  .hero__stage{inset:auto 0 84px 0; height:min(40svh,330px)}
-  .hero__foot{padding-block:14px 22px}
+  /* the artwork is no longer an overlay pinned by a guessed offset — it is
+     the middle grid row, so it occupies exactly the space left between the
+     copy and the caption row. Overlap is impossible at any content height. */
+  .hero__inner{grid-row:1}
+  .hero__stage{
+    position:relative; inset:auto; grid-row:2;
+    width:100%; height:100%; margin-bottom:10px;
+  }
+  .hero__foot{grid-row:3; padding-block:14px 22px}
   .hero__seal{display:none}
 
-  /* Strip patchy .ink backgrounds on narrow screens */
-  .hero__inner .ink {
+  /* Japanese line breaking: strict stops ー and small kana starting a line,
+     auto-phrase breaks at phrase boundaries instead of mid-word (仕/事) */
+  .hero__meta .lede,
+  .hero__meta .cap{
+    line-break:strict;
+    word-break:auto-phrase;
+    text-wrap:pretty;
+  }
+  .hero__meta .lede{font-size:15px; letter-spacing:.02em; line-height:2.05}
+
+  /* the service list reads as a deliberate caption block, ruled off from
+     the sentence above it, rather than floating loose */
+  .hero__meta .cap{
+    margin-top:2px; padding-top:12px; border-top:1px solid var(--ink-16);
+    line-height:1.75; letter-spacing:.04em;
+  }
+
+  /* Strip patchy .ink backgrounds on narrow screens — including the two in
+     the caption row, and reset .ink's -6px side bleed so text stays aligned */
+  .hero__inner .ink,
+  .hero__foot .ink {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
   }
 }
 
 /* short viewports (landscape phones) — pull the band in further */
 @media(max-width:700px) and (max-height:560px){
+  .hero{grid-template-rows:auto minmax(120px,1fr) auto}
   .hero__inner{padding-block:12px 0}
   .hero__title{font-size:clamp(30px,8vw,40px)}
-  .hero__stage{inset:auto 0 70px 0; height:min(34svh,210px)}
+  .hero__meta .lede{line-height:1.9}
+  .hero__foot{padding-block:10px 14px}
 }
 /* ================= 序 CONCEPT — 技法 4 ================= */
 .concept{position:relative; background:var(--kami); padding-block:clamp(80px,13vh,150px)}
