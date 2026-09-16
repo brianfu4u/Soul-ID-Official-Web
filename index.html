@@ -193,8 +193,32 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
   animation:draw 2.4s cubic-bezier(.65,0,.2,1) .25s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 @media(max-width:700px){
-  .hero__title{height:auto; letter-spacing:.22em; margin-bottom:6px}
+  /* rows: [copy] [breathing gap] [artwork band] [caption row] */
+  .hero{grid-template-rows:auto 1fr auto; padding-top:60px}
+
+  /* vertical title and body copy sit side by side, so the title no longer
+     leaves a dead column on the right */
+  .hero__inner{
+    align-self:start; padding-block:20px 0;
+    display:grid; grid-template-columns:auto minmax(0,1fr);
+    column-gap:16px; align-items:start;
+  }
+  .hero__title{height:auto; margin:0; letter-spacing:.2em; font-size:clamp(38px,11vw,54px)}
+  .hero__meta{margin-top:2px; max-width:none; gap:12px}
+  .hero__lat{font-size:16px; letter-spacing:.34em}
+
+  /* artwork is pinned to a band above the caption row — it can no longer
+     reach SCROLL or the 東京 caption */
+  .hero__stage{inset:auto 0 84px 0; height:min(40svh,330px)}
+  .hero__foot{padding-block:14px 22px}
   .hero__seal{display:none}
+}
+
+/* short viewports (landscape phones) — pull the band in further */
+@media(max-width:700px) and (max-height:560px){
+  .hero__inner{padding-block:12px 0}
+  .hero__title{font-size:clamp(30px,8vw,40px)}
+  .hero__stage{inset:auto 0 70px 0; height:min(34svh,210px)}
 }
 /* ================= 序 CONCEPT — 技法 4 ================= */
 .concept{position:relative; background:var(--kami); padding-block:clamp(80px,13vh,150px)}
@@ -1139,7 +1163,16 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
   var heroSvg=document.querySelector(".hero__stage svg");
   function fitHero(){
     if(!heroSvg) return;
-    heroSvg.setAttribute("preserveAspectRatio", innerWidth<900 ? "xMidYMax meet" : "xMidYMax slice");
+    var w=innerWidth;
+    if(w<700){
+      /* crop to the centre of the stage: the band is short and narrow, so a
+         600-unit window makes the scale height-driven and the bowl legible */
+      heroSvg.setAttribute("viewBox","300 0 600 820");
+      heroSvg.setAttribute("preserveAspectRatio","xMidYMax meet");
+    }else{
+      heroSvg.setAttribute("viewBox","0 0 1200 820");
+      heroSvg.setAttribute("preserveAspectRatio", w<900 ? "xMidYMax meet" : "xMidYMax slice");
+    }
   }
   fitHero(); addEventListener("resize",fitHero,{passive:true});
   /* ---------- nav: invert over dark sections ---------- */
